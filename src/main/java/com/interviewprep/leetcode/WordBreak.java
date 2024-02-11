@@ -17,7 +17,6 @@ public class WordBreak {
         dp[0] = true;
         for(int i=1;i<=n;i++){
             for(int j=0;j<i;j++){
-
                 String wb = s.substring(j,i);
                 if(dict.contains(wb)&&dp[j]){
                     dp[i] = true;

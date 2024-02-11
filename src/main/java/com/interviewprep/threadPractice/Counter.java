@@ -36,8 +36,8 @@ public class Counter {
         });
         th1.start();
         th2.start();
-        //th1.join();
-        //th2.join();
+//        th1.join();
+//        th2.join();
 
         System.out.println("Counter = "+c.getCount());
     }

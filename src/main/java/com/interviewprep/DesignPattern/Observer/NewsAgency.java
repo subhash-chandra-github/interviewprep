@@ -33,5 +33,7 @@ public class NewsAgency {
         observable.addObserver(observer);
         observable.addObserver(aajTak);
         observable.setNews("news");
+        observable.removeObserver(aajTak);
+        observable.setNews("Test news");
     }
 }

@@ -6,7 +6,6 @@ public class OddEven {
     private volatile boolean isOdd = true;
     private volatile int n = 1;
 
-
     public synchronized void  printOdd(){
         while (n <= max) {
             while (!isOdd) {

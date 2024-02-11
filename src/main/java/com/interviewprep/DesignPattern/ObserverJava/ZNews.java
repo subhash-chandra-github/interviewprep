@@ -11,6 +11,6 @@ public class ZNews implements Observer {
     @Override
     public void update(Observable observable, Object o) {
         this.news = (String) o;
-        System.out.println("ZNews got this :"+news);
+        System.out.println("ZNews got this : "+news);
     }
 }
