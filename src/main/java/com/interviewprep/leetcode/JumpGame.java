@@ -13,7 +13,7 @@ public class JumpGame {
     private static boolean jump(int[] nums){
 
         int n = nums.length;
-        int reachable =0;
+        int reachable = 0;
         for(int i=0;i<n;i++){
             if(i>reachable){
                 return false;

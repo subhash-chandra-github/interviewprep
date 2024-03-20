@@ -26,6 +26,12 @@
             <artifactId>gson</artifactId>
             <version>2.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version> <!-- Or the latest version compatible with Java 8 -->
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
