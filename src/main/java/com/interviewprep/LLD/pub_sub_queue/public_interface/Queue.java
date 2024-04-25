@@ -4,7 +4,7 @@ package com.interviewprep.LLD.pub_sub_queue.public_interface;
 import com.interviewprep.LLD.pub_sub_queue.handler.TopicHandler;
 import com.interviewprep.LLD.pub_sub_queue.model.Message;
 import com.interviewprep.LLD.pub_sub_queue.model.Topic;
-import com.interviewprep.LLD.pub_sub_queue.model.TopicSubscriber;
+import com.interviewprep.LLD.pub_sub_queue.model.Consumer;
 import lombok.NonNull;
 
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class Queue {
     }
 
     public void subscribe(@NonNull final ISubscriber subscriber, @NonNull final Topic topic) {
-        topic.addSubscriber(new TopicSubscriber(subscriber));
+        topic.addSubscriber(new Consumer(subscriber));
         System.out.println(subscriber.getId() + " subscribed to topic: " + topic.getTopicName());
     }
 
@@ -38,11 +38,11 @@ public class Queue {
     }
 
     public void resetOffset(@NonNull final Topic topic, @NonNull final ISubscriber subscriber, @NonNull final Integer newOffset) {
-        for (TopicSubscriber topicSubscriber : topic.getSubscribers()) {
-            if (topicSubscriber.getSubscriber().equals(subscriber)) {
-                topicSubscriber.getOffset().set(newOffset);
-                System.out.println(topicSubscriber.getSubscriber().getId() + " offset reset to: " + newOffset);
-                new Thread(() -> topicProcessors.get(topic.getTopicId()).startSubsriberWorker(topicSubscriber)).start();
+        for (Consumer consumer : topic.getSubscribers()) {
+            if (consumer.getSubscriber().equals(subscriber)) {
+                consumer.getOffset().set(newOffset);
+                System.out.println(consumer.getSubscriber().getId() + " offset reset to: " + newOffset);
+                new Thread(() -> topicProcessors.get(topic.getTopicId()).startSubsriberWorker(consumer)).start();
                 break;
             }
         }

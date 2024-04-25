@@ -6,7 +6,6 @@ public class Consumer {
 
 
     private String id;
-
     private TopicsRepository topicsRepository;
     private AtomicInteger offset;
 

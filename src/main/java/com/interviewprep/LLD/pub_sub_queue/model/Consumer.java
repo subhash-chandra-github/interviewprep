@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @AllArgsConstructor
-public class TopicSubscriber {
+public class Consumer {
     private final AtomicInteger offset;
     private final ISubscriber subscriber;
 
-    public TopicSubscriber(@NonNull final ISubscriber subscriber) {
+    public Consumer(@NonNull final ISubscriber subscriber) {
         this.subscriber = subscriber;
         this.offset = new AtomicInteger(0);
     }

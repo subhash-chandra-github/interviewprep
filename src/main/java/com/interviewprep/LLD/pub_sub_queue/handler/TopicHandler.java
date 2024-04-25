@@ -1,7 +1,7 @@
 package com.interviewprep.LLD.pub_sub_queue.handler;
 
 import com.interviewprep.LLD.pub_sub_queue.model.Topic;
-import com.interviewprep.LLD.pub_sub_queue.model.TopicSubscriber;
+import com.interviewprep.LLD.pub_sub_queue.model.Consumer;
 import lombok.NonNull;
 
 import java.util.HashMap;
@@ -17,15 +17,15 @@ public class TopicHandler {
     }
 
     public void publish() {
-        for (TopicSubscriber topicSubscriber:topic.getSubscribers()) {
-            startSubsriberWorker(topicSubscriber);
+        for (Consumer consumer :topic.getSubscribers()) {
+            startSubsriberWorker(consumer);
         }
     }
 
-    public void startSubsriberWorker(@NonNull final TopicSubscriber topicSubscriber) {
-        final String subscriberId = topicSubscriber.getSubscriber().getId();
+    public void startSubsriberWorker(@NonNull final Consumer consumer) {
+        final String subscriberId = consumer.getSubscriber().getId();
         if (!subscriberWorkers.containsKey(subscriberId)) {
-            final SubscriberWorker subscriberWorker = new SubscriberWorker(topic, topicSubscriber);
+            final SubscriberWorker subscriberWorker = new SubscriberWorker(topic, consumer);
             subscriberWorkers.put(subscriberId, subscriberWorker);
             new Thread(subscriberWorker).start();
         }

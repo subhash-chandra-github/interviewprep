@@ -2,7 +2,7 @@ package com.interviewprep.LLD.pub_sub_queue.handler;
 
 import com.interviewprep.LLD.pub_sub_queue.model.Message;
 import com.interviewprep.LLD.pub_sub_queue.model.Topic;
-import com.interviewprep.LLD.pub_sub_queue.model.TopicSubscriber;
+import com.interviewprep.LLD.pub_sub_queue.model.Consumer;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.SneakyThrows;
@@ -11,35 +11,35 @@ import lombok.SneakyThrows;
 public class SubscriberWorker implements Runnable {
 
     private final Topic topic;
-    private final TopicSubscriber topicSubscriber;
+    private final Consumer consumer;
 
-    public SubscriberWorker(@NonNull final Topic topic, @NonNull final TopicSubscriber topicSubscriber) {
+    public SubscriberWorker(@NonNull final Topic topic, @NonNull final Consumer consumer) {
         this.topic = topic;
-        this.topicSubscriber = topicSubscriber;
+        this.consumer = consumer;
     }
 
     @SneakyThrows
     @Override
     public void run() {
-        synchronized (topicSubscriber) {
+        synchronized (consumer) {
             do {
-                int curOffset = topicSubscriber.getOffset().get();
+                int curOffset = consumer.getOffset().get();
                 while (curOffset >= topic.getMessages().size()) {
-                    topicSubscriber.wait();
+                    consumer.wait();
                 }
                 Message message = topic.getMessages().get(curOffset);
-                topicSubscriber.getSubscriber().consume(message);
+                consumer.getSubscriber().consume(message);
 
                 // We cannot just increment here since subscriber offset can be reset while it is consuming. So, after
                 // consuming we need to increase only if it was previous one.
-                topicSubscriber.getOffset().compareAndSet(curOffset, curOffset + 1);
+                consumer.getOffset().compareAndSet(curOffset, curOffset + 1);
             } while (true);
         }
     }
 
     synchronized public void wakeUpIfNeeded() {
-        synchronized (topicSubscriber) {
-            topicSubscriber.notify();
+        synchronized (consumer) {
+            consumer.notify();
         }
     }
 }

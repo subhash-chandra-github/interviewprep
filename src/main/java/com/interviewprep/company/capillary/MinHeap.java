@@ -15,7 +15,7 @@ public class MinHeap extends Heaps {
         size++;
         int i=size-1;
         arr[i] = key;
-        while(i!=0 && arr[parent(i)]>arr[i]){
+        while(i!=0 && arr[i] < arr[parent(i)]){
             swap(i,parent(i));
             i=parent(i);
         }
