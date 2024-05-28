@@ -28,21 +28,21 @@ public class Letter_Combinations_of_a_PhoneNumber {
     }
     public  List<String> letterCombinations(String digits){
         List<String> ans = new ArrayList<>();
-        letterCombinationsHelper(digits,ans,"",0);
+        letterCombinationsHelper(digits,ans,new StringBuilder(),0);
         return ans;
     }
 
-    private  void letterCombinationsHelper(String digits, List<String> ans, String res, int idx ) {
+    private  void letterCombinationsHelper(String digits, List<String> ans, StringBuilder res, int idx ) {
 
         if(idx==digits.length()){
-            ans.add(res);
+            ans.add(res.toString());
             return;
         }
         String s = keys.get(digits.charAt(idx));
         for(int i=0;i<s.length();i++){
-            res = res+s.charAt(i);
+            res.append(s.charAt(i));
             letterCombinationsHelper(digits,ans,res,idx+1);
-            res=res.substring(0,res.length()-1);
+            res.deleteCharAt(res.length()-1);
         }
     }
 }

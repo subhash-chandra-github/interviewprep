@@ -1,5 +1,8 @@
 package com.interviewprep.LLD.parkinglot;
 
+import com.interviewprep.LLD.parkinglot.enums.ParkingSlotStatus;
+import com.interviewprep.LLD.parkinglot.model.Vehicle;
+
 import java.util.ArrayList;
 import java.util.List;
 

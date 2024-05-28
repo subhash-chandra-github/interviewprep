@@ -1,5 +1,7 @@
 package com.interviewprep.LLD.parkinglot;
 
+import com.interviewprep.LLD.parkinglot.model.Vehicle;
+
 import java.util.List;
 
 public class ParkingLot {
@@ -33,4 +35,5 @@ public class ParkingLot {
         }
         throw new IllegalStateException("Suitable parking slot not found for vehicle "+vehicle);
     }
+
 }

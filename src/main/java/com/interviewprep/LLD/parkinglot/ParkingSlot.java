@@ -1,5 +1,9 @@
 package com.interviewprep.LLD.parkinglot;
 
+import com.interviewprep.LLD.parkinglot.enums.ParkingSlotSize;
+import com.interviewprep.LLD.parkinglot.enums.ParkingSlotStatus;
+import com.interviewprep.LLD.parkinglot.model.Vehicle;
+
 public class ParkingSlot {
     private int slotId;
     private int slotNumber;

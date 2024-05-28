@@ -7,4 +7,11 @@ package com.interviewprep.java8;
 public interface TestFunctionalInterface {
     void print(String s);
     //void make();
+
+    public static void main(String[] args) {
+        TestFunctionalInterface testFunctionalInterface = (String s)->{
+            System.out.println(s);
+        };
+        testFunctionalInterface.print("Subhash");
+    }
 }

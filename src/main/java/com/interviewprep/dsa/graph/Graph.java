@@ -8,15 +8,14 @@ import java.util.*;
 public class Graph {
 
     private int v;
-    private LinkedList<Integer> adj[];
+    private List<List<Integer>> adj;
 
     Graph(int v) {
         this.v = v;
-        adj = new LinkedList[v];
-        for (int i = 0; i < v; i++) {
-            adj[i] = new LinkedList<>();
+        this.adj = new ArrayList<>(v);
+        for(int i=0;i<v;i++){
+            adj.add(new ArrayList<>());
         }
-
     }
 
     public int getV() {
@@ -27,16 +26,16 @@ public class Graph {
         this.v = v;
     }
 
-    public LinkedList<Integer>[] getAdj() {
+    public List<List<Integer>> getAdj() {
         return adj;
     }
 
-    public void setAdj(LinkedList<Integer>[] adj) {
+    public void setAdj(List<List<Integer>> adj) {
         this.adj = adj;
     }
 
     void addEdge(int v, int w) {
-        adj[v].add(w); // Add w to v's list.
+        adj.get(v).add(w);
     }
 
     void dfs(int v, boolean visited[]) {
@@ -47,7 +46,7 @@ public class Graph {
             int node = st.pop();
             visited[node] = true;
             System.out.print(node + "->");
-            adj[node].forEach(e -> {
+            adj.get(node).forEach(e -> {
                 if (!visited[e]) {
                     visited[e] = true;
                     st.add(e);
@@ -61,7 +60,7 @@ public class Graph {
     void dfsRec(int v, boolean visited[]){
         visited[v] = true;
         System.out.print(v + "->");
-        for (int n : adj[v]) {
+        for (int n : adj.get(v)) {
             if (!visited[n]) {
                 dfsRec(n, visited);
             }
@@ -75,7 +74,7 @@ public class Graph {
             int node = queue.poll();
             visited[node] = true;
             System.out.print(node + "->");
-            adj[node].forEach(e -> {
+            adj.get(node).forEach(e -> {
                 if (!visited[e]) {
                     visited[e] = true;
                     queue.add(e);
@@ -94,6 +93,17 @@ public class Graph {
         g.addEdge(1, 2);
         g.addEdge(2, 3);
         g.addEdge(3, 4);
+
+     /*
+        0-----1
+         \    |
+          \   |
+           \  |
+            \ |
+       3-----2
+       |
+       4
+                */
 
         System.out.println(
                 "Following is Depth First Traversal "

@@ -1,5 +1,10 @@
 package com.interviewprep.LLD.parkinglot;
 
+import com.interviewprep.LLD.parkinglot.enums.ParkingSlotSize;
+import com.interviewprep.LLD.parkinglot.enums.ParkingSlotStatus;
+import com.interviewprep.LLD.parkinglot.model.Car;
+import com.interviewprep.LLD.parkinglot.model.Vehicle;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +14,7 @@ public class ParkingLotSysAdmin {
     public static void main(String[] args) {
         ParkingLevel parkingLevel1 = new ParkingLevel();
         parkingLevel1.setFloorNo(1);
-        ParkingSlot parkingSlot1 = new ParkingSlot(1,1,ParkingSlotSize.COMPACT,ParkingSlotStatus.VACANT,parkingLevel1);
+        ParkingSlot parkingSlot1 = new ParkingSlot(1,1, ParkingSlotSize.COMPACT, ParkingSlotStatus.VACANT,parkingLevel1);
         ParkingSlot parkingSlot2 = new ParkingSlot(2,2,ParkingSlotSize.COMPACT,ParkingSlotStatus.VACANT,parkingLevel1);
         ParkingSlot parkingSlot3 = new ParkingSlot(3,3,ParkingSlotSize.COMPACT,ParkingSlotStatus.VACANT,parkingLevel1);
         ParkingSlot parkingSlot4 = new ParkingSlot(4,4,ParkingSlotSize.SMALL,ParkingSlotStatus.VACANT,parkingLevel1);

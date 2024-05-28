@@ -5,7 +5,6 @@ import java.util.*;
 public class LRUCacheImpl {
 
     private class Node{
-
         int key;
         int value;
         Node next;
@@ -83,5 +82,20 @@ public class LRUCacheImpl {
         Node after = node.next;
         before.next = after;
         after.prev = before;
+    }
+
+    public static void main(String[] args) {
+        LRUCacheImpl lruCache = new LRUCacheImpl(5);
+        lruCache.put(1,1);
+        lruCache.put(2,2);
+        lruCache.put(3,3);
+        lruCache.put(4,4);
+        lruCache.put(5,5);
+
+        System.out.println(lruCache.get(1));
+        System.out.println(lruCache.get(3));
+        lruCache.put(6,6);
+        System.out.println(lruCache.get(2));
+
     }
 }

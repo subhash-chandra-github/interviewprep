@@ -42,18 +42,18 @@ public class Intuit {
 
         Intuit sc = new Intuit();
         Node head1 = sc.createLinkedList(list);
-        //   printList(head1);
+           printList(head1);
+           System.out.println();
 
         List<Integer> list2 = new ArrayList<>();
         list2.add(12);
         list2.add(10);
-        list2.add(2);
-        list2.add(4);
-        list2.add(6);
+//        list2.add(2);
+//        list2.add(4);
+//        list2.add(6);
         Node head2 = sc.createLinkedList(list2);
-        //  printList(head2);
-
-
+          printList(head2);
+        System.out.println();
         head1 = sc.merge(head1, head2);
 
         printList(head1);
@@ -61,6 +61,8 @@ public class Intuit {
 
     public Node merge(Node head1, Node head2) {    //5-7-17-11-13   //12-10-2-4-6   temp = 7,9
 
+      //  5 7 17 11 13
+      //  12 10 2 4 6
         Node current1 = head1;
         Node current2 = head2;
         Node next1;
@@ -69,31 +71,15 @@ public class Intuit {
             next1 = current1.next;
             next2 = current2.next;
 
-            current2.next = next1;
+            if (next1 == null && next2 != null) {
+                current1.next = current2;
+                break;
+            }
             current1.next = current2;
-
+            current2.next = next1;
             current1 = next1;
             current2 = next2;
         }
-        head2 = current2;
-//
-//        int s = getSize(head1);
-//                      //  c1            c2      t
-//        while(s>0){   //6->7-8->10    7->9      8->10   //5-7-17-11-13   //12-10-2-4-6
-//
-//            Node temp = current1.next;
-//            current1.next = new Node(current2.data);
-//            current1 = current1.next;
-//            current1.next=temp;
-//            s--;
-//
-//            current1 = temp;
-//            current2 = current2.next;
-//
-//        }
-
-
-
         return head1;
     }
 
@@ -112,8 +98,6 @@ public class Intuit {
             Node temp = new Node(d);
             current.next = temp;
             current = current.next;
-
-
         }
         return head;
 

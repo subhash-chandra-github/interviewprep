@@ -20,45 +20,17 @@ public abstract class Expense {
         this.metadata = metadata;
     }
 
-    public String getId() {
-        return id;
-    }
+    public abstract boolean validate();
 
-    public void setId(String id) {
-        this.id = id;
+    public List<Split> getSplits() {
+        return splits;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public User getPaidBy() {
         return paidBy;
     }
-
-    public void setPaidBy(User paidBy) {
-        this.paidBy = paidBy;
-    }
-
-    public List<Split> getSplits() {
-        return splits;
-    }
-
-    public void setSplits(List<Split> splits) {
-        this.splits = splits;
-    }
-
-    public ExpenseMetadata getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(ExpenseMetadata metadata) {
-        this.metadata = metadata;
-    }
-
-    public abstract boolean validate();
 }

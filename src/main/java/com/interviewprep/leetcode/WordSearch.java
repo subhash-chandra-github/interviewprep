@@ -27,7 +27,7 @@ public class WordSearch {
 
     public static boolean findWord(char[][] board, String word, int s, int i, int j, int m, int n, boolean[][] visited) {
 
-        if (s<=word.length()) {
+        if (s>=word.length()) {
             return true;
         }
 

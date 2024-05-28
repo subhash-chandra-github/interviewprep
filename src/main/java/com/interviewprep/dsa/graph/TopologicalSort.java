@@ -1,55 +1,64 @@
 package com.interviewprep.dsa.graph;
 
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 public class TopologicalSort {
 
 
-    public static void dfsRec(int v, boolean[] visited, LinkedList<Integer>[] adj){
+    public static void dfsRec(int v, boolean[] visited, List<List<Integer>> adj){
         visited[v] = true;
         System.out.print(v + "->");
-        for (int n : adj[v]) {
+        for (int n : adj.get(v)) {
             if (!visited[n]) {
                 dfsRec(n, visited, adj);
             }
         }
     }
 
-    public static void topologicalSort(boolean[] visited, Graph g){
-        Stack<Integer> stack = new Stack<>();
-        for(int i=0;i<g.getV();i++){
-            if(!visited[i]){
-                topologicalSortUtil(i,stack,visited,g.getAdj());
-            }
-        }
-        while (!stack.isEmpty()){
-            System.out.print(stack.pop() + "->");
-        }
-    }
+    public static void topologicalSort(List<List<Integer>> adj, int v){
 
-    private static void topologicalSortUtil(int v, Stack<Integer> stack, boolean[] visited,  LinkedList<Integer>[] adj) {
-        visited[v] = true;
-        for (int n : adj[v]) {
-            if (!visited[n]) {
-                topologicalSortUtil(n,stack, visited, adj);
+        int[] indegree = new int[v];
+        for(List<Integer> list : adj){
+            for(int vertex : list){
+                indegree[vertex]++;
             }
         }
-        stack.push(v);
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < v; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+        List<Integer> result = new ArrayList<>();
+        while (!q.isEmpty()) {
+            int node = q.poll();
+            result.add(node);
+            // Decrease indegree of adjacent vertices as the
+            // current node is in topological order
+            for (int adjacent : adj.get(node)) {
+                indegree[adjacent]--;
+                // If indegree becomes 0, push it to the
+                // queue
+                if (indegree[adjacent] == 0)
+                    q.add(adjacent);
+            }
+        }
+        System.out.println(result);
+
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph(5);
+        Graph g = new Graph(4);
 
         g.addEdge(0, 1);
-        g.addEdge(0, 2);
         g.addEdge(1, 2);
-        g.addEdge(2, 3);
-        g.addEdge(3, 4);
+        g.addEdge(3, 1);
+        g.addEdge(3, 2);
+       // g.addEdge(3, 4);
 
         boolean[] visited = new boolean[5];
        // dfsRec(0,visited,g.getAdj());
-        topologicalSort(visited,g);
+        topologicalSort(g.getAdj(),g.getV());
 
     }
 }

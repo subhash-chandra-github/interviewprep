@@ -17,9 +17,21 @@ public class PathFromRootToGivenNode {
         node.left.right.right = new TreeNode(4);
 
         List<Integer> list = new ArrayList<>();
+
+        System.out.println("Printing paths from root to given root");
         path(node,7,list);
         Collections.reverse(list);
         System.out.println(list);
+
+        System.out.println("Printing all paths from root to leaf");
+
+        List<List<Integer>> paths = new ArrayList<>();
+        rootToLeafPath(node,new ArrayList<>(),paths);
+        for(List<Integer> path : paths){
+            System.out.println(path);
+        }
+
+
     }
 
     /**
@@ -40,7 +52,7 @@ public class PathFromRootToGivenNode {
             return false;
         }
        if(root.data==t){
-            p.add(root.data);
+           p.add(root.data);
             return true;
         }
         if(path(root.left,t,p)|| path(root.right,t,p)){
@@ -48,6 +60,22 @@ public class PathFromRootToGivenNode {
             return true;
         }
         return false;
+    }
+
+    public static void rootToLeafPath(TreeNode root, List<Integer> p, List<List<Integer>> paths){
+
+        if(root == null){
+            return;
+        }
+        p.add(root.data);
+        if(root.left==null && root.right==null){
+            paths.add(new ArrayList<>(p));
+            return;
+        }
+        rootToLeafPath(root.left,p,paths);
+        rootToLeafPath(root.right,p,paths);
+        p.remove(p.size()-1);
+
     }
 
 

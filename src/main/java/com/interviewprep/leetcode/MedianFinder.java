@@ -26,7 +26,7 @@ public class MedianFinder {
         if(p2.size()!=p1.size()){
             return p1.peek()*1.0;
         }
-        return (p2.peek()*1.0 - p1.peek()*1.0)/2;
+        return (p2.peek()*1.0 + p1.peek()*1.0)/2;
 
     }
 
