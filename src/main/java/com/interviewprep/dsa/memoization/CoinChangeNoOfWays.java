@@ -28,9 +28,9 @@ public class CoinChangeNoOfWays {
         if(n<=0){
             return 0;
         }
-        if (dp[n][amt] != -1)
+        if (dp[n][amt] != -1) {
             return dp[n][amt];
-
+        }
         return dp[n][amt] = noOfWays(coins,amt,n-1,dp)
                 +noOfWays(coins,amt-coins[n-1],n,dp);
 

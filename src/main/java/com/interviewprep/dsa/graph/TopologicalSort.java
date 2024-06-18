@@ -4,17 +4,6 @@ import java.util.*;
 
 public class TopologicalSort {
 
-
-    public static void dfsRec(int v, boolean[] visited, List<List<Integer>> adj){
-        visited[v] = true;
-        System.out.print(v + "->");
-        for (int n : adj.get(v)) {
-            if (!visited[n]) {
-                dfsRec(n, visited, adj);
-            }
-        }
-    }
-
     public static void topologicalSort(List<List<Integer>> adj, int v){
 
         int[] indegree = new int[v];
