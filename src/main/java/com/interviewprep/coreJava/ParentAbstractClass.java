@@ -3,7 +3,7 @@ package com.interviewprep.coreJava;
 public abstract class ParentAbstractClass {
 
     String a;
-  ParentAbstractClass(){
+    ParentAbstractClass(){
       this.a = "Subhash";
   }
 

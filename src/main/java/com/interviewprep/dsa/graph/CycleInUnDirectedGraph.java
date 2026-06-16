@@ -3,9 +3,7 @@ package com.interviewprep.dsa.graph;
 import java.util.ArrayList;
 
 public class CycleInUnDirectedGraph {
-    // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
         boolean[] visited = new boolean[V];
         for(int i=0;i<V;i++){
             if(!visited[i]){

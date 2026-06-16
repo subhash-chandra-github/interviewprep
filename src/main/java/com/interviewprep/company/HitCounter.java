@@ -4,11 +4,14 @@ package com.interviewprep.company;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//    Design a hit counter that counts the no.of hits in the last ‘x’ minutes from the given timestamp.
-//◦ public void hit(int timestamp) Records a hit that happened at timestamp (in seconds). Multiple hits can happen at the same time. Hit method will be called with timestamp in ascending order only. For e.g. hit(3) can’t be called after hit(4)
-//◦ public int getHits(int timestamp) Returns the number of hits in the past x minutes from timestamp. getHits method will only be called with timestamp in ascending order.
+//  Design a hit counter that counts the no.of hits in the last ‘x’ minutes from the given timestamp.
+//◦ public void hit(int timestamp) Records a hit that happened at timestamp (in seconds).
+//  Multiple hits can happen at the same time. Hit method will be called with timestamp in ascending order only.
+//  For e.g. hit(3) can’t be called after hit(4)
+//◦ public int getHits(int timestamp) Returns the number of hits in the past x minutes from timestamp.
+//  getHits method will only be called with timestamp in ascending order.
 //◦ The value of ‘x’ should be configurable.
-//            Sample:
+//  Sample:
 //    X -> 1 minute
 //    hit(1)
 //    hit(1)
@@ -16,7 +19,8 @@ import java.util.Queue;
 //    hit(59)
 //    getHIts(1) -> 2
 //    getHIts(60) -> 4
-//    getHits(65) -> 2   //getHits(63)
+//    getHits(65) -> 2
+//    getHits(63)
 
 //1 2 3 4 5 6 7 8 9 10
 

@@ -1,10 +1,10 @@
 package com.interviewprep.dsa.backtracking;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RatMaze {
 
-    private static ArrayList<String> path = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -13,62 +13,40 @@ public class RatMaze {
                 {1, 1, 0, 0},
                 {0, 1, 1, 1}};
 
-        // Your code here
+        ArrayList<String> path = new ArrayList<>();
         boolean[][] visited = new boolean[4][4];
-        findPath(m, 0, 0, "", 4, visited);
+        findPath(0, 0,m,m.length,m[0].length, "", path, visited);
         for (String s : path) {
             System.out.println(s);
         }
 
     }
+    public static void findPath(int r, int c, int[][] maze, int n, int m,
+                      String s, List<String> ans, boolean[][] visited) {
 
-    static void findPath(int[][] m, int i, int j, String s, int n, boolean[][] visited) {
+        if (!isAllowed(r, c, maze) || visited[r][c]) return;
 
-        if (i == -1 || i == n || j == -1 ||
-                j == n || visited[i][j] ||
-                m[i][j] == 0)
-            return;
-
-        if (i == n - 1 && j == n - 1) {
-            path.add(s);
+        if (r == n-1 && c == m-1) {
+            ans.add(s);
             return;
         }
 
-        visited[i][j]=true;
-        if (isValidStep(m, i + 1, j, n, visited)) {
-            s = s + 'D';
+        visited[r][c] = true;
 
-            findPath(m, i + 1, j, s, n, visited);
-            s = s.substring(0, s.length() - 1);
-        }
+        findPath(r+1, c, maze, n, m, s+'D', ans, visited); // D  ← 1st
+        findPath(r, c-1, maze, n, m, s+'L', ans, visited); // L  ← 2nd
+        findPath(r, c+1, maze, n, m, s+'R', ans, visited); // R  ← 3rd
+        findPath(r-1, c, maze, n, m, s+'U', ans, visited); // U  ← 4th
 
-        if (isValidStep(m, i - 1, j, n, visited)) {
-            s = s + 'U';
-            findPath(m, i - 1, j, s, n, visited);
-            s = s.substring(0, s.length() - 1);
-        }
-
-        if (isValidStep(m, i, j + 1, n, visited)) {
-            s = s + 'R';
-            findPath(m, i, j + 1, s, n, visited);
-            s = s.substring(0, s.length() - 1);
-        }
-
-        if (isValidStep(m, i, j - 1, n, visited)) {
-            s = s + 'L';
-            findPath(m, i, j - 1, s, n, visited);
-            s = s.substring(0, s.length() - 1);
-        }
-        visited[i][j]=false;
-
+        visited[r][c] = false;
     }
 
-    static boolean isValidStep(int[][] m, int row, int col, int n, boolean[][] visited) {
-        if (row == -1 || row == n || col == -1 ||
-                col == n || visited[row][col] ||
-                m[row][col] == 0)
-            return false;
-
+    public static boolean isAllowed(int r, int c, int[][] maze) {
+        int n = maze.length;
+        int m = maze[0].length;
+        if (r < 0 || r >= n) return false;
+        if (c < 0 || c >= m) return false;
+        if (maze[r][c] == 0)  return false;
         return true;
     }
 }

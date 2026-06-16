@@ -9,13 +9,11 @@ public class ReverseLinkedList {
     public static void main(String[] args) {
 
         Node head = createLinkedList(Arrays.asList(1,2,3,4,5,6,7));
+        printLinkList(head);
+        System.out.println();
+        assert head != null;
         Node curr = reverseLinkedRecur(head);
-        while (curr!=null){
-            System.out.print(curr.value+" ");
-            curr = curr.next;
-        }
-
-
+        printLinkList(curr);
     }
 
     public static Node reverseLinkedList(Node head){
@@ -41,6 +39,14 @@ public class ReverseLinkedList {
         head.next.next = head;
         head.next=null;
         return newNode;
+    }
+
+    public static void printLinkList(Node head){
+        Node curr = head;
+        while(curr!=null){
+            System.out.print(curr.value+" ");
+            curr = curr.next;
+        }
     }
 
     public static Node createLinkedList(List<Integer> values) {

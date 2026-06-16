@@ -9,8 +9,8 @@ public class ExceptionsTest {
     //Checked Exceptions -- compile time exceptions
     //1. FileNotFoundException
     //2. InterruptedException
-    //3.ClassNotFoundException
-    //4.InstantiationException
+    //3. ClassNotFoundException
+    //4. InstantiationException
     public void readFile() throws InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         String fileName = "file does not exist";
         File file = new File(fileName);
@@ -28,7 +28,7 @@ public class ExceptionsTest {
     //unchecked exceptions -- runtime exceptions
     // NullPointer exceptions
     // ArrayIndexOutOfBound exceptions
-    //Arithmetic exceptions
+    // Arithmetic exceptions
     public static void main(String[] args) {
 
         try{

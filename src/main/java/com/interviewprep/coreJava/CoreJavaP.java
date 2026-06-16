@@ -16,10 +16,6 @@ public class CoreJavaP {
             swap(a,i,0);
             heapify(a,i,0);
         }
-//        for(int i=1;i<n;i++){
-//            swap(a,i,n-1);
-//            heapify(a,n-i,i);
-//        }
         System.out.println();
         printArry(a);
     }

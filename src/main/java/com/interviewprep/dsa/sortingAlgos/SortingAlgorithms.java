@@ -166,7 +166,7 @@ public class SortingAlgorithms {
         int n = arr.length;
 //        sort.bubbleSort(arr, n);
 //        sort.selectionSort(arr, n);
-        sort.insertionSort(arr, n);
+//        sort.insertionSort(arr, n);
 
 //        sort.mergeSort(arr,0,n-1);
 //        System.out.print("Merge Sort: ");
@@ -176,8 +176,8 @@ public class SortingAlgorithms {
 //        System.out.print("Quick Sort: ");
 //        sort.printArray(arr);
 //
-//        System.out.print("HeapSort :");
-//        sort.heapSort(arr,n);
-//        sort.printArray(arr);
+        System.out.print("HeapSort :");
+        sort.heapSort(arr,n);
+        sort.printArray(arr);
     }
 }

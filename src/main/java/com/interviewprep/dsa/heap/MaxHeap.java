@@ -46,7 +46,7 @@ public class MaxHeap extends Heaps {
         }
         if(largest!=i){
             swap(largest,i);
-            heapyfy(i);
+            heapyfy(largest);
         }
     }
 
