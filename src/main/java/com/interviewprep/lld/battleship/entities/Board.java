@@ -1,12 +1,10 @@
 package com.interviewprep.lld.battleship.entities;
 
 import com.interviewprep.lld.battleship.exceptions.CoordinateOutOfBoundaryException;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class Board {
 
 
@@ -18,6 +16,18 @@ public class Board {
                 this.boundary = boundary;
                 this.ships = ships;
                 this.allBombLocations = new ArrayList<>();
+        }
+
+        public Boundary getBoundary() {
+                return boundary;
+        }
+
+        public List<Ships> getShips() {
+                return ships;
+        }
+
+        public List<Coordinate> getAllBombLocations() {
+                return allBombLocations;
         }
 
         public void takeHit(final Coordinate coordinate) {

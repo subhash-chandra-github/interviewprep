@@ -26,7 +26,11 @@ public class Consumer {
     @SneakyThrows
     public void consume(Message message) {
         System.out.println("Subscriber: " + id + " started consuming: " + message.getContent());
-        Thread.sleep(sleepTimer);
+        try {
+            Thread.sleep(sleepTimer);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("Subscriber: " + id + " done consuming: " + message.getContent());
     }
 

@@ -9,7 +9,7 @@ public class MainRunner {
         Printer p = new Printer();
         Thread1 odd = new Thread1(p);
         Thread2 even = new Thread2(p);
-            odd.start();
-            even.start();
+         odd.start();
+         even.start();
     }
 }

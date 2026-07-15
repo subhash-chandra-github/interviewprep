@@ -1,23 +1,43 @@
 package com.interviewprep.lld.battleship.entities;
 
 import com.interviewprep.lld.battleship.strategy.ChanceGenerationStrategy;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 public class Player {
 
-    private  Board board;
-    private  int id;
+    private Board board;
+    private int id;
     private ChanceGenerationStrategy chanceGenerationStrategy;
 
     public Player(Board board, int id, ChanceGenerationStrategy chanceGenerationStrategy) {
         this.board = board;
         this.id = id;
+        this.chanceGenerationStrategy = chanceGenerationStrategy;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ChanceGenerationStrategy getChanceGenerationStrategy() {
+        return chanceGenerationStrategy;
+    }
+
+    public void setChanceGenerationStrategy(ChanceGenerationStrategy chanceGenerationStrategy) {
         this.chanceGenerationStrategy = chanceGenerationStrategy;
     }
 

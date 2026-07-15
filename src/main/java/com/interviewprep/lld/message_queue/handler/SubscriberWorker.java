@@ -22,7 +22,11 @@ public class SubscriberWorker implements Runnable {
             do {
                 int curOffset = consumer.getOffset().get();
                 while (curOffset >= topic.getMessages().size()) {
-                    consumer.wait();
+                    try {
+                        consumer.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 Message message = topic.getMessages().get(curOffset);
                 consumer.consume(message);

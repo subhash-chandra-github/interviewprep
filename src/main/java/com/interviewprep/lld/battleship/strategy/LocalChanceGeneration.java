@@ -6,15 +6,18 @@ import com.interviewprep.lld.battleship.entities.PlayerChanceTarget;
 import com.interviewprep.lld.battleship.exceptions.InvalidInputException;
 import com.interviewprep.lld.battleship.input.InputProvider;
 import com.interviewprep.lld.battleship.input.PlayerInput;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 
-@AllArgsConstructor
 public class LocalChanceGeneration implements ChanceGenerationStrategy{
 
     private final InputProvider inputProvider;
+
+    public LocalChanceGeneration(InputProvider inputProvider) {
+        this.inputProvider = inputProvider;
+    }
+
     @Override
     public PlayerChanceTarget getPlayerChanceTarget(List<Player> opponents) {
         final PlayerInput playerInput = inputProvider.takeInput();

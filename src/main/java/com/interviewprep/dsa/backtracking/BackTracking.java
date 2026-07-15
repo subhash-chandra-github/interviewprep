@@ -15,18 +15,15 @@ public class BackTracking {
         }
     }
 
-    void permute2(String s, String prefix) {
-        if (s.length()==0) {
+    void permute2(StringBuilder s, String prefix) {
+        if(s.isEmpty()){
             System.out.println(prefix);
-            return;
-        } else {
-            for (int i = 0; i < s.length(); i++) {
+        }else{
+            for(int i=0;i<s.length();i++){
                 char c = s.charAt(i);
-                StringBuilder sb = new StringBuilder(s);
-                sb.deleteCharAt(i);
-                s=sb.toString();
-                permute2(s,prefix+c);
-                s=sb.insert(i,c).toString();
+                s.deleteCharAt(i);
+                permute2(s, prefix+c);
+                s.insert(i,c);
             }
         }
     }
@@ -64,11 +61,11 @@ public class BackTracking {
     }
 
     public static void main(String[] args) {
-        String s = "sub";
+        String s = "abc";
         BackTracking combination = new BackTracking();
-       // combination.permute(s,0,s.length()-1);
-      //  combination.printBinary("",3);
-        combination.permute2(s,"");
+        //combination.permute(s,0,s.length()-1);
+        // combination.printBinary("",3);
+        combination.permute2(new StringBuilder(s),"");
         //combination.printDecimal("",2);
     }
 }
